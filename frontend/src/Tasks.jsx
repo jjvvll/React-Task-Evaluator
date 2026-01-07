@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import api from "./api/axios";
 
 import AddTask from "./components/AddTask";
+import TaskButton from "./components/TaskButton";
 
 function Tasks() {
   const [tasks, setTasks] = useState([]);
@@ -29,9 +30,7 @@ function Tasks() {
       <ul>
         {tasks &&
           tasks.map((task) => (
-            <li key={task.id}>
-              {task.title} {task.isDone ? "✅" : "❌"}
-            </li>
+            <TaskButton key={task.id} task={task} onTaskUpdated={fetchTasks} />
           ))}
       </ul>
     </div>
