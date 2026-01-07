@@ -1,16 +1,15 @@
 import { useState } from "react";
 import api from "../api/axios";
 
-export default function AddTask({ setTasks }) {
+export default function AddTask({ userId, setTasks }) {
   const [newTask, setNewTask] = useState("");
-
   const addTask = async () => {
     if (!newTask.trim()) return;
 
     const payload = {
       Title: newTask,
       IsDone: false,
-      UserId: 1,
+      UserId: userId,
     };
 
     console.log("Sending payload:", payload);
@@ -38,7 +37,9 @@ export default function AddTask({ setTasks }) {
         placeholder="New task"
       />
 
-      <button onClick={addTask}>Add</button>
+      <button onClick={addTask} disabled={!userId}>
+        Add
+      </button>
     </div>
   );
 }

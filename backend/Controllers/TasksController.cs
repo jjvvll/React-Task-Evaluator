@@ -68,4 +68,23 @@ namespace TaskManager.API
             return NoContent();
         }
     }
+
+    [Route("users")]
+    [ApiController]
+    public class UserController : ControllerBase
+    {
+        private readonly ApplicationDbContext _context;
+
+        public UserController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+       [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var users = await _context.Users.ToListAsync();
+            return Ok(users);
+        }
+    }
 }
