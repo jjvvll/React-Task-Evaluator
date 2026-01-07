@@ -1,0 +1,40 @@
+/* Container for each user item */
+.user-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  background-color: #2e2e2e; /* dark gray to blend with body */
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.user-item:hover {
+  background-color: #3a3a3a; /* slightly lighter on hover */
+}
+
+/* User email text */
+.user-email {
+  flex: 1;
+  font-size: 16px;
+  color: #f0f0f0; /* light text for dark bg */
+  word-break: break-word;
+}
+
+/* Button styling */
+.user-button {
+  padding: 5px 10px;
+  margin-left: 6px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #2196f3; /* blue button */
+  color: white;
+  transition: background-color 0.2s;
+}
+
+.user-button:hover {
+  background-color: #1976d2; /* darker blue on hover */
+}

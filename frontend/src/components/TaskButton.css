@@ -1,0 +1,95 @@
+/* Container for each task item - dark theme */
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  background-color: #2e2e2e; /* darker gray to blend with body */
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.task-item:hover {
+  background-color: #3a3a3a; /* slightly lighter on hover */
+}
+
+/* Task title text */
+.task-title {
+  flex: 1;
+  font-size: 16px;
+  color: #f0f0f0; /* light text for dark bg */
+  word-break: break-word;
+}
+
+.task-title.done {
+  text-decoration: line-through;
+  color: #888; /* muted gray for completed tasks */
+}
+
+/* Button styling */
+.task-button {
+  margin-left: 6px;
+  padding: 4px 8px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: white;
+}
+
+/* Specific button colors for dark theme */
+.toggle-btn {
+  background-color: #4caf50;
+}
+.toggle-btn:hover {
+  background-color: #45a049;
+}
+
+.delete-btn {
+  background-color: #f44336;
+}
+.delete-btn:hover {
+  background-color: #e53935;
+}
+
+.edit-btn {
+  background-color: #2196f3;
+}
+.edit-btn:hover {
+  background-color: #1976d2;
+}
+
+/* Edit input container */
+.edit-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+/* Edit input field */
+.edit-input {
+  flex: 1;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #555; /* darker border for dark theme */
+  background-color: #3a3a3a;
+  color: #f0f0f0;
+  font-size: 14px;
+}
+
+.edit-input:focus {
+  outline: none;
+  border-color: #2196f3;
+}
+
+/* Edit submit button */
+.submit-btn {
+  padding: 5px 10px;
+  background-color: #4caf50;
+}
+.submit-btn:hover {
+  background-color: #45a049;
+}

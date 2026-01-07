@@ -1,5 +1,6 @@
 import { useState } from "react";
 import api from "../api/axios";
+import "./AddTask.css";
 
 export default function AddTask({ userId, setTasks }) {
   const [newTask, setNewTask] = useState("");
@@ -29,8 +30,9 @@ export default function AddTask({ userId, setTasks }) {
   };
 
   return (
-    <div>
+    <div className="add-task-container">
       <input
+        className="add-task-input"
         type="text"
         value={newTask}
         onChange={(e) => setNewTask(e.target.value)}

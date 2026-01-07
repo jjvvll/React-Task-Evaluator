@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "./api/axios";
 
+import "./Tasks.css";
 import AddTask from "./components/AddTask";
 import TaskButton from "./components/TaskButton";
 import UserButton from "./components/UserButton";
@@ -56,15 +57,22 @@ function Tasks() {
   }, []);
 
   return (
-    <div>
+    <div className="tasks-container">
       <div>
-        <h1>
-          Current User:{" "}
-          {selectedUserId
-            ? users.find((u) => u.id === selectedUserId)?.email
-            : "None"}
-        </h1>
-        <ul>
+        <div className="current-user">
+          <h1>
+            Current User:{" "}
+            {selectedUserId
+              ? users.find((u) => u.id === selectedUserId)?.email
+              : "None"}
+          </h1>
+          {selectedUserId && (
+            <button onClick={() => setSelectedUserId(null)}>
+              Remove User Filter
+            </button>
+          )}
+        </div>
+        <ul className="users-list">
           {users &&
             users.map((user) => (
               <UserButton
@@ -78,14 +86,14 @@ function Tasks() {
 
       <h2>Tasks</h2>
       <AddTask setTasks={setTasks} userId={selectedUserId} />
-      <ul>
+      <ul className="tasks-list">
         {tasks &&
           tasks.map((task) => (
             <TaskButton
               key={task.id}
               task={task}
-              tasks={tasks} // pass current state
-              setTasks={setTasks} // pass setter
+              tasks={tasks}
+              setTasks={setTasks}
             />
           ))}
       </ul>

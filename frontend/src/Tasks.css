@@ -1,0 +1,70 @@
+/* General page container */
+.tasks-container {
+  max-width: 600px; /* width */
+  margin: 20px auto; /* center horizontally */
+  padding: 20px;
+  background-color: #242424; /* matches body */
+  border-radius: 12px;
+  color: #f0f0f0; /* default text color */
+  font-family: Arial, sans-serif;
+}
+
+/* Headings */
+.tasks-container h1,
+.tasks-container h2 {
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+/* User list */
+.users-list,
+.tasks-list {
+  list-style: none; /* remove bullets */
+  padding: 0;
+  margin: 0;
+}
+
+/* Separate each <li> by spacing */
+.users-list li,
+.tasks-list li {
+  margin-bottom: 8px;
+}
+
+/*smooth fade for hover effect in list items */
+.users-list li:hover,
+.tasks-list li:hover {
+  transition: background-color 0.2s;
+}
+
+/* Current User section */
+.current-user {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* space between header and button */
+  margin-bottom: 16px;
+  flex-wrap: wrap; /* in case viewport is narrow */
+}
+
+/* Current User header */
+.current-user h1 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff; /* light text for dark bg */
+  margin: 0;
+}
+
+/* Remove Filter button */
+.current-user button {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #f44336; /* red button */
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.current-user button:hover {
+  background-color: #e53935; /* slightly darker on hover */
+}
