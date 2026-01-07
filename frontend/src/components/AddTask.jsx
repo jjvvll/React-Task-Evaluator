@@ -1,7 +1,7 @@
 import { useState } from "react";
 import api from "../api/axios";
 
-export default function AddTask({ onTaskAdded }) {
+export default function AddTask({ setTasks }) {
   const [newTask, setNewTask] = useState("");
 
   const addTask = async () => {
@@ -17,11 +17,11 @@ export default function AddTask({ onTaskAdded }) {
 
     try {
       const response = await api.post("/tasks", payload);
-      console.log("Success:", response.data);
-      setNewTask("");
 
-      //notify parent component
-      onTaskAdded();
+      // Append the new task to parent state
+      setTasks((prevTasks) => [...prevTasks, response.data]);
+
+      setNewTask("");
     } catch (err) {
       console.error("Full error:", err);
       console.error("Error response:", err.response?.data);

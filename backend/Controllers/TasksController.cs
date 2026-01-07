@@ -40,7 +40,7 @@ namespace TaskManager.API
             
             _context.Tasks.Add(task);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetById), new { id = task.Id }, task);
+            return CreatedAtAction(nameof(Get), new { id = task.Id }, task);
         }
 
         [HttpPut("{id}")] 

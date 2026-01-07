@@ -26,11 +26,16 @@ function Tasks() {
   return (
     <div>
       <h2>Tasks</h2>
-      <AddTask onTaskAdded={fetchTasks} />
+      <AddTask setTasks={setTasks} />
       <ul>
         {tasks &&
           tasks.map((task) => (
-            <TaskButton key={task.id} task={task} onTaskUpdated={fetchTasks} />
+            <TaskButton
+              key={task.id}
+              task={task}
+              tasks={tasks} // pass current state
+              setTasks={setTasks} // pass setter
+            />
           ))}
       </ul>
     </div>
