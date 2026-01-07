@@ -1,45 +1,42 @@
 import { useState } from "react";
-import api from "../api/axios";
+import { updateTask, deleteTask as deleteTaskService } from "../services/tasks";
 import "./TaskButton.css";
 
 export default function TaskButton({ task, tasks, setTasks }) {
   const [editTask, setEditTask] = useState("");
   const [isEditing, setIsEditing] = useState(false);
 
-  async function toggleIsDone() {
+  const toggleIsDone = async () => {
     try {
-      const response = await api.put(`/tasks/${task.id}`, {
+      const updated = await updateTask(task.id, {
         ...task,
         isDone: !task.isDone,
       });
-      setTasks(tasks.map((t) => (t.id === task.id ? response.data : t)));
+      setTasks(tasks.map((t) => (t.id === task.id ? updated : t)));
     } catch (err) {
-      console.error("Failed to update task:", err.response?.data || err);
+      console.error("Failed to toggle task:", err);
     }
-  }
+  };
 
-  async function deleteTask() {
+  const deleteTask = async () => {
     try {
-      await api.delete(`/tasks/${task.id}`);
+      await deleteTaskService(task.id);
       setTasks(tasks.filter((t) => t.id !== task.id));
     } catch (err) {
-      console.error("Failed to delete task:", err.response?.data || err);
+      console.error("Failed to delete task:", err);
     }
-  }
+  };
 
-  async function submitEdit() {
+  const submitEdit = async () => {
     try {
-      const response = await api.put(`/tasks/${task.id}`, {
-        ...task,
-        title: editTask,
-      });
-      setTasks(tasks.map((t) => (t.id === task.id ? response.data : t)));
+      const updated = await updateTask(task.id, { ...task, title: editTask });
+      setTasks(tasks.map((t) => (t.id === task.id ? updated : t)));
       setIsEditing(false);
       setEditTask("");
     } catch (err) {
-      console.error("Failed to update task:", err.response?.data || err);
+      console.error("Failed to update task:", err);
     }
-  }
+  };
 
   return (
     <li className="task-item">

@@ -1,11 +1,12 @@
 import { useState } from "react";
-import api from "../api/axios";
+import { addTask as addTaskService } from "../services/tasks";
 import "./AddTask.css";
 
 export default function AddTask({ userId, setTasks }) {
   const [newTask, setNewTask] = useState("");
+
   const addTask = async () => {
-    if (!newTask.trim()) return;
+    if (!newTask.trim() || !userId) return; // prevent adding empty tasks or without user
 
     const payload = {
       Title: newTask,
@@ -13,19 +14,12 @@ export default function AddTask({ userId, setTasks }) {
       UserId: userId,
     };
 
-    console.log("Sending payload:", payload);
-
     try {
-      const response = await api.post("/tasks", payload);
-
-      // Append the new task to parent state
-      setTasks((prevTasks) => [...prevTasks, response.data]);
-
+      const createdTask = await addTaskService(payload);
+      setTasks((prevTasks) => [...prevTasks, createdTask]);
       setNewTask("");
     } catch (err) {
-      console.error("Full error:", err);
-      console.error("Error response:", err.response?.data);
-      console.error("Error status:", err.response?.status);
+      console.error("Failed to add task:", err);
     }
   };
 
