@@ -26,13 +26,21 @@ namespace TaskManager.API
             return Ok(tasks);
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var task = await _context.Tasks.FindAsync(id);
+            if (task == null) return NotFound();
+            return Ok(task);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] TaskItem task)
         {
             
             _context.Tasks.Add(task);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(Get), new { id = task.Id }, task);
+            return CreatedAtAction(nameof(GetById), new { id = task.Id }, task);
         }
 
         [HttpPut("{id}")] 
